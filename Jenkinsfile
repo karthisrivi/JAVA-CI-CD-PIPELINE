@@ -30,11 +30,10 @@ pipeline
          {
              script
              {
-                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/dev1git/maven-web-application.git']]])
+                 checkout([$class: 'GitSCM', branches: [[name: '*/development']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/karthisrivi/maven-web-application.git']]])
                  COMMIT = sh (script: "git rev-parse --short=10 HEAD", returnStdout: true).trim()  
-            
-                 
-
+                 BRANCH_NAME = sh(script: 'git name-rev --name-only HEAD', returnStdout: true)
+                 GIT_BRANCH = BRANCH_NAME.substring(BRANCH_NAME.lastIndexOf('/') + 1, BRANCH_NAME.length())               
              }
              
          }
@@ -166,8 +165,8 @@ pipeline
  
         Regards,
  
-        Nithin John George
-        ''', compressLog: true, replyTo: 'njdevops321@gmail.com', 
+        Karthik P
+        ''', compressLog: true, replyTo: 'srivikarthi93@gmail.com', 
         subject: '$PROJECT_NAME - $BUILD_NUMBER - $BUILD_STATUS', to: 'njdevops321@gmail.com'
      }
      failure
@@ -179,8 +178,8 @@ pipeline
  
         Regards,
  
-        Nithin John George
-        ''', compressLog: true, replyTo: 'njdevops321@gmail.com', 
+        Karthik P
+        ''', compressLog: true, replyTo: 'srivikarthi93@gmail.com', 
         subject: '$PROJECT_NAME - $BUILD_NUMBER - $BUILD_STATUS', to: 'njdevops321@gmail.com'
      }
  }
