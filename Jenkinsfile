@@ -30,7 +30,7 @@ pipeline
          {
              script
              {
-                 checkout([$class: 'GitSCM', branches: [[name: '*/development']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/karthisrivi/maven-web-application.git']]])
+                 checkout([$class: 'GitSCM', branches: [[name: '*/development']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/dev1git/maven-web-application.git']]])
                  COMMIT = sh (script: "git rev-parse --short=10 HEAD", returnStdout: true).trim()  
                  BRANCH_NAME = sh(script: 'git name-rev --name-only HEAD', returnStdout: true)
                  GIT_BRANCH = BRANCH_NAME.substring(BRANCH_NAME.lastIndexOf('/') + 1, BRANCH_NAME.length())               
